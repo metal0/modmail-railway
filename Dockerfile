@@ -23,7 +23,4 @@ ARG MM_MAIN_SERVER_ID
 ARG MM_INBOX_SERVER_ID
 ARG MM_LOG_CHANNEL_ID
 
-VOLUME /app/modmailbot/db
-VOLUME /app/modmailbot/attachments
-
 ENTRYPOINT ["/bin/bash", "--login", "-c", "npm start"]
