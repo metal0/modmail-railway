@@ -1,7 +1,7 @@
 FROM debian:latest
 
 RUN apt update
-RUN apt install curl build-essential git python3 python3-pip -y
+RUN apt install curl build-essential git python3 python3-pip wget -y
 
 SHELL ["/bin/bash", "--login", "-c"]
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
@@ -22,5 +22,10 @@ ARG MM_PREFIX
 ARG MM_MAIN_SERVER_ID
 ARG MM_INBOX_SERVER_ID
 ARG MM_LOG_CHANNEL_ID
+ARG MIGRATE_URL
+ARG DB_FILE=/app/modmailbot/db/data.sqlite
 
+COPY migrate.sh migrate.sh
+RUN chmod +x migrate.sh
+RUN /bin/bash ./migrate.sh "$DB_FILE" "$MIGRATE_URL"
 ENTRYPOINT ["/bin/bash", "--login", "-c", "npm start"]
