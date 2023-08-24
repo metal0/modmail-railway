@@ -6,7 +6,7 @@ if [ -f "$1" ]; then
   echo "SQLite data file exists"
 else
   if [ -n "$2" ]; then
-    wget -O data.sqlite "$2"
+    wget -O "$1" "$2"
     echo "Downloaded data file"
   fi
 fi
