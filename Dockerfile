@@ -28,4 +28,5 @@ ARG DB_FILE=/app/modmailbot/db/data.sqlite
 COPY migrate.sh migrate.sh
 RUN chmod +x migrate.sh
 RUN /bin/bash ./migrate.sh "$DB_FILE" "$MIGRATE_URL"
-ENTRYPOINT ["/bin/bash", "--login", "-c", "npm start"]
+ENTRYPOINT ["/bin/bash", "./migrate.sh", "$DB_FILE", "$MIGRATE_URL", "&", "/bin/bash", "--login", "-c", "npm start"]
+# :joy:
