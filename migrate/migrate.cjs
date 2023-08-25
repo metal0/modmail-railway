@@ -1,5 +1,5 @@
 const fs = require("fs");
-const fetch = require("node-fetch");
+import fetch from 'node-fetch';
 const {MIGRATE_URL, DB_FILE} = process.env;
 
 // https://stackoverflow.com/a/22907134
