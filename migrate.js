@@ -21,4 +21,6 @@ function download(url, dest) {
 if(MIGRATE_URL?.length > 5 && DB_FILE) {
   console.info("Downloading file...");
   download(MIGRATE_URL, DB_FILE)
+} else {
+  console.warn("Skipping migration...")
 }
