@@ -31,5 +31,5 @@ RUN npm i
 WORKDIR /app/modmailbot
 #RUN chmod +x migrate.sh
 #RUN /bin/bash ./migrate.sh "$DB_FILE" "$MIGRATE_URL"
-ENTRYPOINT ["/bin/bash", "--login", "-c", "node migrate.js", "&", "/bin/bash", "--login", "-c", "npm start"]
+ENTRYPOINT ["/bin/bash", "--login", "-c", "node migrate/migrate.js", "&", "/bin/bash", "--login", "-c", "npm start"]
 # :joy:
