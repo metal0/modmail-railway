@@ -13,11 +13,8 @@ const downloadFile = (async (url, path) => {
 });
 
 if(MIGRATE_URL?.length > 5 && DB_FILE?.includes("data.sqlite")) {
-  console.info("Downloading file...");
+  console.info("Downloading migration file...");
   await downloadFile(MIGRATE_URL, DB_FILE);
   console.info("Done!");
   //process.exit(1);
-} else {
-  console.warn("Skipping migration...")
-  console.log(process.env.MIGRATE_URL, process.env.DB_FILE);
 }
