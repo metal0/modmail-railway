@@ -16,7 +16,7 @@ if(MIGRATE_URL?.length > 5 && DB_FILE?.includes("data.sqlite")) {
   console.info("Downloading file...");
   await downloadFile(MIGRATE_URL, DB_FILE);
   console.info("Done!");
-  process.exit(1);
+  //process.exit(1);
 } else {
   console.warn("Skipping migration...")
   console.log(process.env.MIGRATE_URL, process.env.DB_FILE);
