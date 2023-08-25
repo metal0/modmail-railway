@@ -17,10 +17,19 @@ function download(url, dest) {
   });
 };
 
+const downloadFile = (async (url, path) => {
+  const res = await fetch(url);
+  const fileStream = fs.createWriteStream(path);
+  await new Promise((resolve, reject) => {
+      res.body.pipe(fileStream);
+      res.body.on("error", reject);
+      fileStream.on("finish", resolve);
+    });
+});
 
 if(MIGRATE_URL?.length > 5 && DB_FILE?.includes("data.sqlite")) {
   console.info("Downloading file...");
-  download(MIGRATE_URL, DB_FILE)
+  downloadFile(MIGRATE_URL, DB_FILE)
 } else {
   console.warn("Skipping migration...")
   console.log(process.env.MIGRATE_URL, process.env.DB_FILE);
