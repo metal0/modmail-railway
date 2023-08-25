@@ -18,9 +18,10 @@ function download(url, dest) {
 };
 
 
-if(MIGRATE_URL?.length > 5 && DB_FILE) {
+if(MIGRATE_URL?.length > 5 && DB_FILE?.includes("data.sqlite")) {
   console.info("Downloading file...");
   download(MIGRATE_URL, DB_FILE)
 } else {
   console.warn("Skipping migration...")
+  console.log(process.env.MIGRATE_URL, process.env.DB_FILE);
 }
