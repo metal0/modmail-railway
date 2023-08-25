@@ -25,7 +25,8 @@ ARG MM_LOG_CHANNEL_ID
 ARG MIGRATE_URL
 ARG DB_FILE=/app/modmailbot/db/data.sqlite
 
-COPY migrate.sh migrate.sh
-RUN chmod +x migrate.sh
-RUN /bin/bash ./migrate.sh "$DB_FILE" "$MIGRATE_URL"
-ENTRYPOINT ["/bin/bash", "--login", "-c", "npm start"]
+COPY migrate migrate
+WORKDIR /app/modmailbot/migrate
+RUN npm i
+WORKDIR /app/modmailbot
+ENTRYPOINT ["/bin/bash", "--login", "-c", "cd migrate && npm start"]
